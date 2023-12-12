@@ -19,9 +19,11 @@ function App() {
 
   return (
     <div className="App">
-      <p>
-        {account}
-      </p>
+      <header className='App-header'>
+        <p>
+          {account}
+        </p>
+      </header>
     </div>
   );
 }
