@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Web3 from 'web3';
+
 
 function App() {
+  const [account, setAccount] = useState();
+  
+  async function loadAccounts() {
+    const web3 = new Web3(window.ethereum);
+    window.ethereum.enable();
+    const accounts = await web3.eth.getAccounts();
+    setAccount(accounts[0]);
+  }
+
+  useEffect(() => {
+    loadAccounts();
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>
+        {account}
+      </p>
     </div>
   );
 }
